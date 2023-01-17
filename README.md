@@ -1,6 +1,6 @@
 # Hearthstone Drops
 ![](Screenshot.png)
 
-https://hsdrops-production.up.railway.app/
+https://www.aretherehearthstonedrops.com/
 
-A site that checks for active Hearthstone Twitch/Youtube drops.
+A site that checks for active Twitch or Youtube drops for Hearthstone.
