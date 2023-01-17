@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {% now "Y-m-d H:m:s" as today %}
+
+        {% if drop.start_date|date:'Y-m-d H:m:s' > today  %}
+        <meta name="description" content="There are upcoming Hearthstone drops!">
+
+        {% elif drop.start_date|date:'Y-m-d H:m:s' <= today and drop.end_date|date:'Y-m-d H:m:s' >=  today %}
+        <meta name="description" content="There are Hearthstone drops active right now!">
+
+        {% elif drop.end_date|date:'Y-m-d H:m:s' < today %}
+        <meta name="description" content="A site that checks for Hearthstone Twitch or Youtube drops. There are none active right now.">
+
+        {% endif %}
+
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+        <title>Hearthstone Drops</title>
+    </head>
+    <body>
+        <div class="header">
+            <div class="name unselectable" unselectable="on" >
+                Hearthstone Drops
+            </div>
+            <ul class="links">
+                <li><a href="#" id="status">Status</a></li>
+                <li><a href="#" id="history">History</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="box" id="status-box">
+
+                {% if drop.start_date|date:'Y-m-d H:m:s' > today  %}
+                <div class="status">There are upcoming drops.</div>
+                <div class="article" ><a href='{{drop.link}}'>{{drop.title}}</a></div>
+                <div class="details">{{drop.start_date|timeuntil}} until they start.</div>
+
+                {% elif drop.start_date|date:'Y-m-d H:m:s' <= today and drop.end_date|date:'Y-m-d H:m:s' >=  today %}
+                <div class="status">Drops are currently active!</div>
+                <div class="article" ><a href='{{drop.link}}'>{{drop.title}}</a></div>
+                <div class="details">Be sure to get them before it's over.</div>
+
+                {% elif drop.end_date|date:'Y-m-d H:m:s' < today %}
+                <div class="status">There are currently no drops.</div>
+                <div class="details">It's been {{drop.end_date|timesince}} since the last one.</div>
+                <div class="article" ><a href='{{drop.link}}'>{{drop.title}}</a></div>
+                {% endif %}
+            </div>
+            <div id="history-box">
+
+            </div>
+        </div>
+
+        <button onclick='goTop()' class='box-small' id='top-btn' title="Go to top">Top</button> 
+
+        <div class="footer">
+            <div><a href="https://github.com/wlong1">Github</a></div>
+            <div><a href="/rss">RSS Feed</a></div>
+        </div>
+        
+        <script src="{% static 'script.js' %}"></script>
+
+    </body>
+</html>
