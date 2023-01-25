@@ -4,13 +4,23 @@ body {
     font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
     flex-direction: column;
     margin: 0;
-    background-image: url("background.png");
     background-color: black;
     background-size: cover;
     background-position: center; 
     background-repeat: no-repeat;
     overflow: visible;
 }
+
+
+.no-webp body {
+    background-image: url("background.png");
+}
+
+
+.webp body{
+    background-image: url("background.webp");
+}
+
 
 .header,
 .footer {
