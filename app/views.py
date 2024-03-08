@@ -9,5 +9,5 @@ def index(request):
     return render( request, 'index.html', {'drop': drop})
 
 def history(request):
-    drops = Feature.objects.all()
+    drops = Feature.objects.all().order_by('-id')[:5]
     return JsonResponse({'drops':list(drops.values())})

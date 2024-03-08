@@ -54,7 +54,7 @@ $('body').on('click', '#history', function(e){
                     // Load title box and then the rest
                     titles = document.createElement('div');
                     titles.setAttribute('class', 'status');
-                    titles.textContent = 'History of Last 10 Drops'
+                    titles.textContent = 'History of Last 5 Drops';
 
                     boxes = document.createElement('div');
                     boxes.setAttribute('class', 'box-small');
@@ -62,7 +62,7 @@ $('body').on('click', '#history', function(e){
 
                     historyBox.appendChild(boxes)
 
-                    for (const drop of res.drops.reverse()) {
+                    for (const drop of res.drops) {
                         titles = document.createElement('div');
                         titles.setAttribute('class', 'article');
 
